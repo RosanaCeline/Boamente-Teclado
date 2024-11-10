@@ -11,8 +11,18 @@ public class SubmitTextApiService {
     private long lastTimeMillis;
     private ProjectAPIService projectAPIService;
 
+    // Variavel para controlar se o envio de textos esta habilitado
+    // Por padrao vai vim habilitado.
+    private boolean isCaptureEnabled = true;
+
     public SubmitTextApiService(){
         this.projectAPIService = new ProjectAPIService();
+    }
+
+    // Metodo para ativar ou desativar o envio de textos
+    // se true - habilita /  se false - desabilita
+    public void setTextCaptureEnabled(boolean enabled) {
+        this.isCaptureEnabled = enabled;
     }
 
     private String getTypedText(InputConnection ic){
@@ -33,6 +43,12 @@ public class SubmitTextApiService {
     }
 
     public void submitText(InputConnection ic) {
+        // Verificando se o envio de textos esta habilitado.
+        if(!isCaptureEnabled) {
+            System.out.println("The text capture is disabled. No text will be sent to the API.");
+            return;
+        }
+
         long currentTimeMillis = System.currentTimeMillis();
         if(lastTimeMillis - currentTimeMillis > ONE_SECOND) {
             System.out.println("======================= submit =======================");
