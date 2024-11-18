@@ -50,10 +50,10 @@ public class SubmitTextApiService {
         }
 
         long currentTimeMillis = System.currentTimeMillis();
-        if(lastTimeMillis - currentTimeMillis > ONE_SECOND) {
-            System.out.println("======================= submit =======================");
+        if((currentTimeMillis - lastTimeMillis) > ONE_SECOND) {
             String text = getTypedText(ic);
             if(text != null && verifyThreeWords(text)){
+                System.out.println("======================= submit =======================");
                 submitToApi(text);
             }
         }

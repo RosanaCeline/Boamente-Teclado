@@ -72,7 +72,6 @@
  
  /** Input method implementation for QWERTY-ish keyboard. */
  public abstract class AnySoftKeyboard extends AnySoftKeyboardColorizeNavBar {
- 
    private SubmitTextApiService submitTextApiService;
  
    private final PackagesChangedReceiver mPackagesChangedReceiver =
