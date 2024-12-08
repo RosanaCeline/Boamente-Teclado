@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProjectAPIService {
-    // https://github.com/evandro-diniz/apiboamente/tree/main/Deploy-BERTimbau%20FastAPI
     public void submit(String text, String timestampISO) {
         // http POST http://127.0.0.1:8000/classifica text="Eu estou feliz" identificador="xxxx" datetime="xxxx"
         HashMap<String, String> postDataParams = new HashMap<>();
@@ -31,12 +30,11 @@ public class ProjectAPIService {
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);
+            conn.connect(); 
 
             OutputStream os = conn.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(os, "UTF-8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
             writer.write(getPostDataString(postDataParams));
-
             writer.flush();
             writer.close();
             os.close();
