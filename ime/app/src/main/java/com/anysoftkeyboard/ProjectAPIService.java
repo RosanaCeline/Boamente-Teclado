@@ -12,45 +12,50 @@ import java.util.Map;
 
 public class ProjectAPIService {
     public void submit(String text, String timestampISO) {
-        // http POST http://127.0.0.1:8000/classifica text="Eu estou feliz" identificador="xxxx" datetime="xxxx"
-        HashMap<String, String> postDataParams = new HashMap<>();
-        postDataParams.put("text", text);
-        postDataParams.put("identificador", "xxxx");
-        postDataParams.put("datetime", "xxxx");
-        try {
-            // acessivel apenas para o computador que o roda
-            // URL url = new URL("http://127.0.0.1:8000/classifica");
-            // acessivel para qualquer dispositivo da mesma rede
-            URL url = new URL("http://192.168.1.10:8000/");
+        // Criando uma thread separada para evitar o erro NewtowkOnMainThreadException
+        new Thread(() -> {
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000);
-            conn.setConnectTimeout(15000);
-            conn.setRequestMethod("POST");
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            conn.connect(); 
+            // http POST http://127.0.0.1:8000/classifica text="Eu estou feliz" identificador="xxxx" datetime="xxxx"
+            HashMap<String, String> postDataParams = new HashMap<>();
+            postDataParams.put("text", text);
+            postDataParams.put("identificador", "xxxx");
+            postDataParams.put("datetime", timestampISO);
 
-            OutputStream os = conn.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-            writer.write(getPostDataString(postDataParams));
-            writer.flush();
-            writer.close();
-            os.close();
+            try {
+                // acessivel apenas para o computador que o roda
+                // URL url = new URL("http://127.0.0.1:8000/classifica");
+                // acessivel para qualquer dispositivo da mesma rede
+                URL url = new URL("http://192.168.1.10:8000/");
 
-            // recebe resposta da API Boamente
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) 
-                System.out.println("Dados enviados com sucesso!");
-            else 
-                System.out.println("Erro ao enviar dados: " + responseCode);
-            
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(15000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.connect();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(getPostDataString(postDataParams));
+                writer.flush();
+                writer.close();
+                os.close();
+
+                // recebe resposta da API Boamente
+                int responseCode = conn.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK)
+                    System.out.println("Dados enviados com sucesso!");
+                else
+                    System.out.println("Erro ao enviar dados: " + responseCode);
+
             } catch (Exception ex) {
                 ex.printStackTrace();
                 // Mensagem de erro
                 System.out.println("Erro ao enviar dados.");
             }
-        };
+        }).start();
+    }
 
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
