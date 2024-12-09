@@ -21,8 +21,7 @@ public class ProjectAPIService {
             // acessivel apenas para o computador que o roda
             // URL url = new URL("http://127.0.0.1:8000/classifica");
             // acessivel para qualquer dispositivo da mesma rede
-            URL url = new URL("http://192.168.1.10:8000/classifica");
-
+            URL url = new URL("http://192.168.1.10:8000/");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(15000);
@@ -39,13 +38,13 @@ public class ProjectAPIService {
             writer.close();
             os.close();
 
-                // recebe respotsa da API Boamente
-                int responseCode = conn.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) 
-                    System.out.println("Dados enviados com sucesso!");
-                else 
-                    System.out.println("Erro ao enviar dados: " + responseCode);
-        
+            // recebe resposta da API Boamente
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) 
+                System.out.println("Dados enviados com sucesso!");
+            else 
+                System.out.println("Erro ao enviar dados: " + responseCode);
+            
             } catch (Exception ex) {
                 ex.printStackTrace();
                 // Mensagem de erro
