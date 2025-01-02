@@ -24,8 +24,8 @@ public class SubmitTextApiService {
     private static final SimpleDateFormat ISO_8601_FORMAT = createISOFormatter();
 
     private static SimpleDateFormat createISOFormatter () {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
-        formatter.setTimeZone(TimeZone.getTimeZone("UTC")); // Garante que o timestamp seja UTC
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", new Locale("pt", "BR"));
+        formatter.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo")); // Define o fuso horário para o Brasil
         return formatter;
     }
 
