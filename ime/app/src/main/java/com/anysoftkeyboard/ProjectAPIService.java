@@ -1,5 +1,7 @@
 package com.anysoftkeyboard;
 
+import org.json.JSONObject;
+
 import java.io.BufferedWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -14,18 +16,11 @@ public class ProjectAPIService {
     public void submit(String text, String timestampISO) {
         // Criando uma thread separada para evitar o erro NewtowkOnMainThreadException
         new Thread(() -> {
-
-            // http POST http://127.0.0.1:8000/classifica text="Eu estou feliz" identificador="xxxx" datetime="xxxx"
-            HashMap<String, String> postDataParams = new HashMap<>();
-            postDataParams.put("text", text);
-            postDataParams.put("identificador", "xxxx");
-            postDataParams.put("datetime", timestampISO);
-
             try {
-                // acessivel apenas para o computador que o roda
-                // URL url = new URL("http://127.0.0.1:8000/classifica");
+                // acessivel apenas para o computador que o roda (localhost)
+                // URL url = new URL("http://10.0.2.2:8000/classifica");
                 // acessivel para qualquer dispositivo da mesma rede
-                URL url = new URL("http://192.168.1.10:8000/");
+                URL url = new URL("http://10.0.2.2:8000/classifica");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(15000);
@@ -33,11 +28,20 @@ public class ProjectAPIService {
                 conn.setRequestMethod("POST");
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
-                conn.connect();
 
+                // Configurar o cabeçalho para indicar que os dados são JSON
+                conn.setRequestProperty("Content-Type", "application/json");
+
+                // Criar o JSON a ser enviado
+                JSONObject jsonParams = new JSONObject();
+                jsonParams.put("text", text);
+                jsonParams.put("identificador", "xxxx");
+                jsonParams.put("datetime", timestampISO);
+
+                // Enviar o JSON no corpo da requisição
                 OutputStream os = conn.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getPostDataString(postDataParams));
+                writer.write(jsonParams.toString());
                 writer.flush();
                 writer.close();
                 os.close();
@@ -55,7 +59,7 @@ public class ProjectAPIService {
                 System.out.println("Erro ao enviar dados.");
             }
         }).start();
-    }
+        }
 
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
