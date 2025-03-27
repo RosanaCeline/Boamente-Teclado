@@ -29,6 +29,7 @@ This repository was developed based on the <strong>Boamente</strong> project and
 ## Modifications by
 * RosanaCeline – All modifications listed in this document were made or revised by me.
 * [laisdeveloper](https://github.com/laisdeveloper) – Contributed to the improvements of the project, with some code and functionality changes.
+* [marceloiavenissi](https://github.com/marceloiavenissi) - Created the first version of the Boamente keyboard.
 
 ---
 
