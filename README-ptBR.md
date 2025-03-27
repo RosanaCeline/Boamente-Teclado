@@ -29,3 +29,4 @@ Este repositório foi desenvolvido com base no projeto <strong>Boamente</strong>
 ## Modificações por
 * RosanaCeline – Todas as modificações listadas neste documento foram feitas ou revisadas por mim.
 * [laisdeveloper](https://github.com/laisdeveloper) – Contribuiu com melhorias no projeto, incluindo alterações no código e funcionalidades.
+* [marceloiavenissi](https://github.com/marceloiavenissi) - Criou a primeira versão do teclado Boamente.
