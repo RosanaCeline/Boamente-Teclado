@@ -16,24 +16,20 @@ public class ScrollViewAsMainChild extends ScrollView implements MainChild {
 
   public ScrollViewAsMainChild(Context context) {
     super(context);
-    init();
   }
 
   public ScrollViewAsMainChild(Context context, AttributeSet attrs) {
     super(context, attrs);
-    init();
   }
 
   public ScrollViewAsMainChild(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init();
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ScrollViewAsMainChild(
       Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
-    init();
   }
 
   private void init() {

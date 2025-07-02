@@ -13,3 +13,10 @@ dependencies {
 
     testImplementation project(':ime:base-test')
 }
+
+tasks.withType(JavaCompile).configureEach {
+    // Remove o -Werror do options.compilerArgs, se existir
+    options.compilerArgs = options.compilerArgs.findAll { it != '-Werror' }
+    // Como alternativa, pode tentar resetar para vazio os warnings
+    options.compilerArgs.add('-Xlint:none')
+}

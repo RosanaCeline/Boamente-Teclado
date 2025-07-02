@@ -5,30 +5,30 @@
         android:id="@+id/mainFragment"
         android:enabled="true"
         android:icon="@drawable/ic_app_shortcut_home"
-        android:title="@string/bottom_nav_home" />
+        android:title="Olá" />
 
     <item
         android:id="@+id/languageSettingsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_app_shortcut_language"
-        android:title="@string/language_root_tile" />
+        android:title="Idioma" />
 
     <item
         android:id="@+id/userInterfaceSettingsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_app_shortcut_themes"
-        android:title="@string/ui_root_tile" />
+        android:title="Interface" />
 
     <item
         android:id="@+id/gesturesSettingsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_app_shortcut_gestures"
-        android:title="@string/app_shortcut_gestures_short_label" />
+        android:title="Gestos" />
 
     <item
         android:id="@+id/quickTextKeysBrowseFragment"
         android:enabled="true"
         android:icon="@drawable/ic_app_shortcut_quick_keys"
-        android:title="@string/app_shortcut_quick_keys_short_label" />
+        android:title="Configurar emojis" />
 
 </menu>

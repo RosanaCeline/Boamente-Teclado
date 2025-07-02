@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/beta_tester_message"
+        android:text="Essa é uma versão do teclado AnySoftKeyboard modificada para uso na plataforma Boamente. \nPor favor, se encontrar algum problema entre em contato com o suporte Boamente."
         android:autoLink="web"/>
 
     <Button

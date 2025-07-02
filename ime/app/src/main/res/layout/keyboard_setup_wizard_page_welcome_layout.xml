@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_welcome_title" />
+        android:text="Bem-vindo!" />
 
     <FrameLayout
         android:layout_width="200dp"
@@ -26,21 +26,21 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_welcome_sub_title" />
+        android:text="Obrigado por instalar o AnySoftKeyboard versão Boamente!" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_welcome_info" />
+        android:text="Como em qualquer outro teclado Android, você terá que ativar o AnySoftKeyboard nas configurações do Android. Isto é requisitado pelo Android para certificar-se que os seus dados não são roubados por teclados maliciosos." />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_welcome_info_2" />
+        android:text="Pronto? Clique abaixo para começar, vou lhe guiar nessa tarefa." />
 
     <TextView
         android:id="@+id/go_to_start_setup"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/transparent_click_feedback_background"
-        android:text="@string/setup_wizard_welcome_start_action" />
+        android:text="Iniciar configuração..." />
 
     <TextView
         style="@style/Ask.Text.Small"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:padding="8dp"
-        android:text="@string/setup_wizard_welcome_info_footnote" />
+        android:text="Se restou alguma dúvida em relação às políticas de privacidade do teclado AnySoftKeyboard na versão disponibilizada pela plataforma Boamente, pedimos que vejam novamente as políticas de privacidade abaixo e/ou entrem em contato com o suporte Boamente."/>
 
     <TextView
         android:id="@+id/setup_wizard_welcome_privacy_action"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/transparent_click_feedback_background"
-        android:text="@string/setup_wizard_welcome_privacy_action" />
+        android:text="Política de Privacidade…" />
 
     <TextView
         android:id="@+id/skip_setup_wizard"
@@ -76,5 +76,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginTop="24dp"
         android:background="@drawable/transparent_click_feedback_background"
-        android:text="@string/setup_wizard_skip" />
+        android:text="Ignorar" />
+
 </LinearLayout>

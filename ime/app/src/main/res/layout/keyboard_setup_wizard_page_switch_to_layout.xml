@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_step_two_title" />
+        android:text="Trocar para o AnySoftKeyboard versão Boamente" />
 
     <ImageView
         android:id="@+id/step_state_icon"
@@ -34,7 +34,7 @@
         android:drawablePadding="6dp"
         android:drawableStart="@drawable/ic_user_interface_category"
         android:padding="4dp"
-        android:text="@string/setup_wizard_step_two_action" />
+        android:text="Trocar teclado ativo" />
 
     <TextView
         style="@style/Ask.Text.Normal"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/setup_wizard_step_two_details" />
+        android:text="Agora o AnySoftKeyboard está disponível no seu aparelho, no entanto ele não está ativado. Ao ativar o AnySoftKeyboard se tornará seu novo teclado, junto com todas as suas funcionalidades!" />
 
     <TextView
         android:id="@+id/skip_setup_wizard"
@@ -52,6 +52,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginTop="24dp"
         android:background="@drawable/transparent_click_feedback_background"
-        android:text="@string/setup_wizard_skip" />
+        android:text="Ignorar" />
 
 </LinearLayout>

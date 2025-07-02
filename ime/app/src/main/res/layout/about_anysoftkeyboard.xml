@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:text="@string/ime_name"
+        android:text="AnySoftKeyboard Boamente"
         android:textIsSelectable="true" />
 
     <TextView
@@ -92,7 +92,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:padding="8dp"
-        android:text="@string/about_additional_software_licenses" />
+        android:text="Outras licenças" />
 
     <TextView
         android:id="@+id/about_privacy_link"
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="8dp"
-        android:text="@string/read_our_privacy_policy" />
+        android:text="Leia a Política de Privacidade..." />
 
     <TextView
         android:id="@+id/about_web_site_link"
@@ -110,5 +110,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="8dp"
-        android:text="@string/visit_our_web_site" />
+        android:text="Visite nosso site..." />
 </LinearLayout>

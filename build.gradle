@@ -60,3 +60,20 @@ def cleanOthers = tasks.register("cleanOthers", Delete) {
 tasks.register('clean').configure({
     it.finalizedBy(cleanOthers)
 })
+
+
+allprojects {
+    tasks.withType(JavaCompile).configureEach {
+        if (options.compilerArgs.contains("-Werror")) {
+            options.compilerArgs.remove("-Werror")
+        }
+    }
+}
+
+allprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+}

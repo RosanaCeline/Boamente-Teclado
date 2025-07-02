@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboards xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Ids dos teclados que devem vir ativados -->
+    <Keyboard keyboardId="4c99178a-9a80-4218-8b13-f05f474c7f5e" />
+
+    <Keyboard keyboardId="848ac210-4d87-11e8-b566-0800200c9a66" />
+
+    <Keyboard keyboardId="24664bb0-1051-11e9-b56e-0800200c9a66" />
+
+</Keyboards>

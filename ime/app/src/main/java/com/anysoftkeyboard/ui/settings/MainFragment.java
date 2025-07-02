@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -23,6 +24,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -101,18 +104,62 @@ public class MainFragment extends Fragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
+    EditText uuidInput = view.findViewById(R.id.uuid_input);
+    Button uuidSubmitButton = view.findViewById(R.id.uuid_submit_button);
+    TextView uuidDisplay = view.findViewById(R.id.uuid_display_text);
+    Button uuidEditButton = view.findViewById(R.id.uuid_edit_button);
+
+    SharedPreferences prefs = requireContext().getSharedPreferences("boamente_prefs", Context.MODE_PRIVATE);
+    String savedUuid = prefs.getString("patient_uuid", null);
+
+    // Exibe o UUID salvo e oculta input, se existir
+    if (savedUuid != null && !savedUuid.isEmpty()) {
+      uuidDisplay.setText("UUID salvo: " + savedUuid);
+      uuidDisplay.setVisibility(View.VISIBLE);
+      uuidEditButton.setVisibility(View.VISIBLE);
+      uuidInput.setVisibility(View.GONE);
+      uuidSubmitButton.setVisibility(View.GONE);
+    } else {
+      uuidDisplay.setVisibility(View.GONE);
+      uuidEditButton.setVisibility(View.GONE);
+      uuidInput.setVisibility(View.VISIBLE);
+      uuidSubmitButton.setVisibility(View.VISIBLE);
+    }
+
+    // Clique em "Salvar UUID"
+    uuidSubmitButton.setOnClickListener(v -> {
+      String uuid = uuidInput.getText().toString().trim();
+      String uuidRegex = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
+
+      if (uuid.isEmpty()) {
+        Toast.makeText(requireContext(), "Por favor, insira um UUID.", Toast.LENGTH_SHORT).show();
+      } else if (!uuid.matches(uuidRegex)) {
+        Toast.makeText(requireContext(), "UUID inválido. Verifique o formato.", Toast.LENGTH_SHORT).show();
+      } else {
+        prefs.edit().putString("patient_uuid", uuid).apply();
+        Toast.makeText(requireContext(), "UUID salvo com sucesso!", Toast.LENGTH_SHORT).show();
+
+        // Atualiza interface para exibir apenas o UUID salvo
+        uuidDisplay.setText("UUID salvo: " + uuid);
+        uuidDisplay.setVisibility(View.VISIBLE);
+        uuidEditButton.setVisibility(View.VISIBLE);
+        uuidInput.setVisibility(View.GONE);
+        uuidSubmitButton.setVisibility(View.GONE);
+      }
+    });
+
+    // Clique em "Editar UUID"
+    uuidEditButton.setOnClickListener(v -> {
+      uuidInput.setText(savedUuid); // opcional: pré-preencher o input com UUID atual
+      uuidDisplay.setVisibility(View.GONE);
+      uuidEditButton.setVisibility(View.GONE);
+      uuidInput.setVisibility(View.VISIBLE);
+      uuidSubmitButton.setVisibility(View.VISIBLE);
+    });
+
     mDialogController =
         new GeneralDialogController(
             getActivity(), R.style.Theme_AskAlertDialog, this::onSetupDialogRequired);
-    final ViewGroup latestChangeLogCard = view.findViewById(R.id.latest_change_log_card);
-    final View latestChangeLogCardContent =
-        ChangeLogFragment.LatestChangeLogViewFactory.createLatestChangeLogView(
-            this,
-            latestChangeLogCard,
-            () ->
-                Navigation.findNavController(requireView())
-                    .navigate(MainFragmentDirections.actionMainFragmentToFullChangeLogFragment()));
-    latestChangeLogCard.addView(latestChangeLogCardContent);
     View testingView = view.findViewById(R.id.testing_build_message);
     testingView.setVisibility(mTestingBuild ? View.VISIBLE : View.GONE);
     View testerSignUp = view.findViewById(R.id.beta_sign_up);

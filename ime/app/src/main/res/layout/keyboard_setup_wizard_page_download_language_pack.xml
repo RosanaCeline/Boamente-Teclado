@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_step_download_title" />
+        android:text="Baixe pacotes de idiomas" />
 
     <ImageView
         android:id="@+id/step_state_icon"
@@ -33,7 +33,7 @@
         android:drawablePadding="6dp"
         android:drawableStart="@drawable/ic_keyboard_globe_menu"
         android:padding="4dp"
-        android:text="@string/setup_wizard_step_download_action" />
+        android:text="Baixar pacotes de idiomas" />
 
     <TextView
         android:id="@+id/skip_download_packs_action"
@@ -46,7 +46,7 @@
         android:drawablePadding="6dp"
         android:drawableStart="@drawable/ic_cancel"
         android:padding="4dp"
-        android:text="@string/setup_wizard_step_download_skip_action" />
+        android:text="Ignorar" />
 
     <TextView
         style="@style/Ask.Text.Normal"
@@ -54,6 +54,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/setup_wizard_step_download_details" />
+        android:text="Você ficará feliz em saber que AnySoftKeyboard suporta dezenas de idiomas. Basta baixar o pacote de idioma desejado e digitar em qualquer idioma no seu dispositivo." />
 
 </LinearLayout>

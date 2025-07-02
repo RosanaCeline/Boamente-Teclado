@@ -53,12 +53,90 @@
                 android:autoLink="web"
                 android:drawablePadding="6dp"
                 android:padding="8dp"
-                android:text="@string/ime_name"
+                android:text="AnySoftKeyboard Boamente"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_go_to_website"
                 app:drawableLeftCompat="@drawable/ic_go_to_website" />
 
         </FrameLayout>
+
+        <!-- Aqui começa o campo UUID -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/uuid_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- Label do campo -->
+                <TextView
+                    android:id="@+id/uuid_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Digite seu UUID de Paciente:"
+                    android:textSize="@dimen/font_size_sub_title"
+                    android:textColor="?android:textColorSecondary"
+                    android:paddingBottom="4dp" />
+
+                <!-- UUID visível após salvo -->
+                <TextView
+                    android:id="@+id/uuid_display_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="UUID salvo: "
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:padding="8dp"
+                    android:visibility="gone" />
+
+                <!-- Botão para editar UUID -->
+                <Button
+                    android:id="@+id/uuid_edit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar UUID"
+                    android:layout_marginTop="4dp"
+                    android:visibility="gone" />
+
+                <!-- Campo de entrada -->
+                <EditText
+                    android:id="@+id/uuid_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Ex: 123e4567-e89b-12d3-a456-426614174000"
+                    android:importantForAutofill="no"
+                    android:singleLine="true"
+                    android:padding="8dp"
+                    android:background="@android:drawable/edit_text" />
+
+                <!-- Mensagem de status opcional -->
+                <TextView
+                    android:id="@+id/uuid_status_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#888888"
+                    android:textSize="14sp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Botão para enviar UUID -->
+                <Button
+                    android:id="@+id/uuid_submit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enviar UUID"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="12dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- this box will be should shown
          only if the build type is not release -->
@@ -100,7 +178,7 @@
                 android:layout_gravity="center_horizontal"
                 android:drawablePadding="6dp"
                 android:padding="8dp"
-                android:text="@string/not_configured_with_click_here"
+                android:text="O AnySoftKeyboard não está totalmente configurado para uso. Clique aqui para configurar."
                 android:textColor="?android:textColorSecondary"
                 android:textSize="@dimen/font_size_sub_title"
                 app:drawableStartCompat="@drawable/ic_not_configured_animation"
@@ -124,7 +202,7 @@
                 android:layout_gravity="center_horizontal"
                 android:drawablePadding="6dp"
                 android:padding="8dp"
-                android:text="@string/not_notification_permission_text"
+                android:text="O AnySoftKeyboard não tem sua permissão para publicar notificações. Raramente, precisamos notificá-lo sobre problemas críticos (como travamentos)."
                 android:textColor="?android:textColorSecondary"
                 app:drawableTopCompat="@drawable/ic_notification_perm_required" />
         </androidx.cardview.widget.CardView>
@@ -144,7 +222,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:layout_marginTop="8dp"
-            android:visibility="gone">
+            android:visibility="invisible">
 
             <TextView
                 style="@style/Ask.Text.Normal"
@@ -153,7 +231,7 @@
                 android:layout_gravity="center_horizontal"
                 android:autoLink="web"
                 android:padding="8dp"
-                android:text="@string/ask_beta_link_promo"
+                android:text="Ei! Quer ver coisas novas do AnySoftKeyboard mais rápido? Então você está com sorte! O Canal BETA já está disponível para você! Cadastre-se no link abaixo e atualize através da Google Play-Store! https:// play. google. com/ apps/ testing/ com. menny. android. anysoftkeyboard Obrigado por ajudar a encontrar os bugs antes do lançamento final."
                 android:textColor="?android:textColorSecondary" />
         </androidx.cardview.widget.CardView>
 

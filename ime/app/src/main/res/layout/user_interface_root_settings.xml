@@ -29,19 +29,19 @@
                 android:id="@+id/settings_tile_themes"
                 style="@style/Ask.SettingsTileLayout"
                 app:tileImage="@drawable/ic_ui_themes"
-                app:tileLabel="@string/ui_theme_settings_tile" />
+                app:tileLabel="Escolha e configure os temas do teclado." />
 
             <net.evendanan.pixel.SettingsTileView
                 android:id="@+id/settings_tile_effects"
                 style="@style/Ask.SettingsTileLayout"
                 app:tileImage="@drawable/ic_ui_effects"
-                app:tileLabel="@string/ui_effects_settings_tile" />
+                app:tileLabel="Efeitos de teclado e experiência." />
 
             <net.evendanan.pixel.SettingsTileView
                 android:id="@+id/settings_tile_even_more"
                 style="@style/Ask.SettingsTileLayout"
                 app:tileImage="@drawable/ic_language_root_tweaks"
-                app:tileLabel="@string/language_tweaks_settings_tile" />
+                app:tileLabel="Ajustes e mais." />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_step_permissions_title" />
+        android:text="Ativar permissões" />
 
     <ImageView
         android:id="@+id/step_state_icon"
@@ -38,7 +38,7 @@
             android:background="@drawable/transparent_click_feedback_background"
             android:drawablePadding="6dp"
             android:padding="4dp"
-            android:text="@string/wizard_allow_contacts_permission"
+            android:text="Permitir sugestão de palavras baseada no nome de seus contatos"
             app:drawableTopCompat="@drawable/ic_contacts_perm_required" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="@string/contacts_permissions_rationale" />
+            android:text="O AnySoftKeyboard usará os nomes dos seus contatos para fornecer sugestões personalizadas de palavras: ao digitar uma palavra, são procuradas palavras semelhantes para completar e corrigir automaticamente a digitação." />
 
         <TextView
             android:id="@+id/open_permissions_wiki_action"
@@ -57,7 +57,7 @@
             android:layout_gravity="center"
             android:background="@drawable/transparent_click_feedback_background"
             android:padding="4dp"
-            android:text="@string/read_more_about_permissions" />
+            android:text="Ler mais sobre permissões..." />
 
         <TextView
             android:id="@+id/disable_contacts_dictionary"
@@ -67,7 +67,7 @@
             android:layout_gravity="center"
             android:background="@drawable/transparent_click_feedback_background"
             android:padding="4dp"
-            android:text="@string/turn_off_contacts_dictionary" />
+            android:text="Desativar o dicionário de contato" />
 
     </LinearLayout>
 
@@ -86,7 +86,7 @@
             android:background="@drawable/transparent_click_feedback_background"
             android:drawablePadding="6dp"
             android:padding="4dp"
-            android:text="@string/wizard_allow_notification_permission"
+            android:text="Permitir notificações do AnySoftKeyboard"
             app:drawableTopCompat="@drawable/ic_notification_perm_required" />
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="@string/setup_wizard_step_notification_permissions_details" />
+            android:text="Em casos raros (por exemplo, falhas na aplicação) precisaremos publicar uma notificação do dispositivo. Isto é recomendado mas a desativação da notificação não afetará o comportamento desta aplicação." />
 
         <TextView
             android:id="@+id/skip_notification_permissions_action"
@@ -106,7 +106,7 @@
             android:background="@drawable/transparent_click_feedback_background"
             android:drawablePadding="6dp"
             android:padding="4dp"
-            android:text="@string/wizard_skip_notification_permission"/>
+            android:text="Não permitir notificações"/>
 
     </LinearLayout>
 </LinearLayout>

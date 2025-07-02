@@ -14,7 +14,8 @@
         id="4c99178a-9a80-4218-8b13-f05f474c7f5e"
         index="111"
         layoutResId="@xml/brazilian_qwerty_c"
-        nameResId="@string/brazilian_keyboard_name" />
+        nameResId="@string/brazilian_keyboard_name"
+        defaultEnabled="true" />
     <Keyboard
         defaultDictionaryLocale="pt-BR"
         description="Teclado QWERTY com símbolos"

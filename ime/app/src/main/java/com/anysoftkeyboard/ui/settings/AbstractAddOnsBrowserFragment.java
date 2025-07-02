@@ -204,7 +204,7 @@ public abstract class AbstractAddOnsBrowserFragment<E extends AddOn> extends Fra
     if (mIsSingleSelection) {
       mSelectedKeyboardView = view.findViewById(R.id.demo_keyboard_view);
       if (mSimulateTyping) {
-        mSelectedKeyboardView.setSimulatedTypingText("welcome to anysoftkeyboard");
+        mSelectedKeyboardView.setSimulatedTypingText("bem-vindo ao anysoftkeyboard");
       }
     }
   }

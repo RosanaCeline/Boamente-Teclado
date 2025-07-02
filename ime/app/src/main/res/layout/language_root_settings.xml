@@ -21,18 +21,18 @@
             android:id="@+id/settings_tile_keyboards"
             style="@style/Ask.SettingsTileLayout"
             app:tileImage="@drawable/ic_language_root_keyboards"
-            app:tileLabel="@string/language_keyboards_settings_tile" />
+            app:tileLabel="Ativar teclados e idiomas." />
 
         <net.evendanan.pixel.SettingsTileView
             android:id="@+id/settings_tile_grammar"
             style="@style/Ask.SettingsTileLayout"
             app:tileImage="@drawable/ic_language_root_grammar"
-            app:tileLabel="@string/language_grammar_settings_tile" />
+            app:tileLabel="Configurar comportamento de correção e outros dicionários." />
 
         <net.evendanan.pixel.SettingsTileView
             android:id="@+id/settings_tile_even_more"
             style="@style/Ask.SettingsTileLayout"
             app:tileImage="@drawable/ic_language_root_tweaks"
-            app:tileLabel="@string/language_tweaks_settings_tile" />
+            app:tileLabel="Ajustes e mais." />
     </LinearLayout>
 </ScrollView>

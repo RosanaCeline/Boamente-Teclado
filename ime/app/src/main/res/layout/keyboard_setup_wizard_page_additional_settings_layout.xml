@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="8dp"
-        android:text="@string/setup_wizard_step_three_title" />
+        android:text="O que vêm agora" />
 
     <include layout="@layout/demo_keyboard_include_layout" />
 
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/setup_wizard_step_three_details" />
+        android:text="Obrigado por utilizar o teclado AnySoftKeyboard versão Boamente" />
 
     <TextView
         style="@style/Ask.Text.SubTitle"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="@string/setup_wizard_step_three_details_done" />
+        android:text="Está pronto 🎉 Vá à sua aplicação favorita onde escreve para testar." />
 
     <TextView
         style="@style/Ask.Text.Normal"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="@string/setup_wizard_step_three_details_actions" />
+        android:text="Ou pode personalizar o teclado ao seu gosto:" />
 
     <TextView
         android:id="@+id/go_to_languages_action"
@@ -51,7 +51,7 @@
         android:drawablePadding="6dp"
         android:drawableStart="@drawable/ic_language_category"
         android:padding="4dp"
-        android:text="@string/setup_wizard_step_three_action_languages" />
+        android:text="Configura idiomas..." />
 
     <TextView
         android:id="@+id/go_to_theme_action"
@@ -64,7 +64,7 @@
         android:drawablePadding="6dp"
         android:drawableStart="@drawable/ic_user_interface_category"
         android:padding="4dp"
-        android:text="@string/setup_wizard_step_three_action_themes" />
+        android:text="Escolher temas..." />
 
     <TextView
         android:id="@+id/go_to_all_settings_action"
@@ -77,5 +77,5 @@
         android:drawableStart="@drawable/ic_app_shortcut_ui_tweaks"
         android:drawablePadding="6dp"
         android:padding="4dp"
-        android:text="@string/setup_wizard_step_three_action_all_settings" />
+        android:text="Outras configurações..." />
 </LinearLayout>

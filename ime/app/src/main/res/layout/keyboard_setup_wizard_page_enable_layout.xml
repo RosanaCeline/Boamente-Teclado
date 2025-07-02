@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="4dp"
-        android:text="@string/setup_wizard_step_one_title" />
+        android:text="Ativar o AnySoftKeyboard versão Boamente" />
 
     <ImageView
         android:id="@+id/step_state_icon"
@@ -32,7 +32,7 @@
         android:drawableLeft="@drawable/ic_settings_language"
         android:drawablePadding="6dp"
         android:padding="4dp"
-        android:text="@string/setup_wizard_step_one_action" />
+        android:text="Vá nas configurações de Idioma e Teclado..." />
 
     <TextView
         style="@style/Ask.Text.Normal"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/setup_wizard_step_one_details" />
+        android:text="Nesta etapa, você precisará ativar o AnySoftKeyboard. Por favor, selecione o 'AnySoftKeyboard' em configurações de Idioma e Teclado. Isso permitirá a ativação do app no seu aparelho." />
 
     <TextView
         android:id="@+id/skip_setup_wizard"
@@ -50,6 +50,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginTop="24dp"
         android:background="@drawable/transparent_click_feedback_background"
-        android:text="@string/setup_wizard_skip" />
+        android:text="Ignorar" />
 
 </LinearLayout>

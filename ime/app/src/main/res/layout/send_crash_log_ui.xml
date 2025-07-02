@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         style="@style/Ask.Text.Title"
         android:gravity="center_horizontal"
-        android:text="@string/ime_crashed_title" />
+        android:text="O AnySoftKeyboard parou de funcionar@" />
 
     <TextView
         android:layout_width="match_parent"

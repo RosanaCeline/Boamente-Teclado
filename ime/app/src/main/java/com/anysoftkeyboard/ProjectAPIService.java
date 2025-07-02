@@ -1,5 +1,9 @@
 package com.anysoftkeyboard;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
@@ -13,7 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProjectAPIService {
-    public void submit(String text, String timestampISO) {
+    private final Context context;
+
+    public ProjectAPIService(Context context) {
+        this.context = context.getApplicationContext(); // evitar leaks
+    }
+    public void submitToApi(String text, String timestampISO) {
         // Criando uma thread separada para evitar o erro NewtowkOnMainThreadException
         new Thread(() -> {
             try {
@@ -32,10 +41,19 @@ public class ProjectAPIService {
                 // Configurar o cabeçalho para indicar que os dados são JSON
                 conn.setRequestProperty("Content-Type", "application/json");
 
+                // Pegando o UUID salvo
+                SharedPreferences prefs = context.getSharedPreferences("boamente_prefs", Context.MODE_PRIVATE);
+                String uuid = prefs.getString("patient_uuid", null);
+
+                if (uuid == null || uuid.isEmpty()) {
+                    Log.w("SubmitAPI", "UUID not found. Data not sent to the API.");
+                    return;
+                }
+
                 // Criar o JSON a ser enviado
                 JSONObject jsonParams = new JSONObject();
                 jsonParams.put("text", text);
-                jsonParams.put("identificador", "xxxx");
+                jsonParams.put("identificador", uuid);
                 jsonParams.put("datetime", timestampISO);
 
                 // Enviar o JSON no corpo da requisição
@@ -49,32 +67,14 @@ public class ProjectAPIService {
                 // recebe resposta da API Boamente
                 int responseCode = conn.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK)
-                    System.out.println("Dados enviados com sucesso!");
+                    Log.d("SubmitAPI", "Dados enviados com sucesso!");
                 else
-                    System.out.println("Erro ao enviar dados: " + responseCode);
+                    Log.w("SubmitAPI", "Erro ao enviar dados: " + responseCode);
 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                // Mensagem de erro
-                System.out.println("Erro ao enviar dados.");
+                Log.w("SubmitAPI", "Erro ao enviar dados.");
             }
         }).start();
-        }
-
-    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-        for(Map.Entry<String, String> entry : params.entrySet()){
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-        }
-
-        return result.toString();
     }
 }

